@@ -68,7 +68,7 @@ var iframeEl = document.createElement('iframe');
 iframeEl.src = 'data:text/html,';
 bodyEl.appendChild(iframeEl);
 iframeEl.addEventListener('load', function() {
-  var support = { sameOriginDataUri: true };
+  var support = { sameOriginDataUri: false };
   try {
     this.contentDocument;
     if (!this.contentDocument) support.sameOriginDataUri = false;
@@ -88,7 +88,7 @@ var addIframe = function(codeEl, support, iframeId) {
   var previewEl, resizeableEl, iframeEl;
   previewEl = document.createElement('div');
   previewEl.appendChild(resizeableEl = document.createElement('div'));
-  previewEl.className = 'preview';
+  previewEl.className = 'bs-example';
   resizeableEl.appendChild(iframeEl = document.createElement('iframe'));
   resizeableEl.className = 'resizeable';
   iframeEl.setAttribute('scrolling', 'no');
@@ -133,6 +133,11 @@ var addIframe = function(codeEl, support, iframeId) {
   };
   codeEl.addEventListener('keypress', codeDidChange);
   codeEl.addEventListener('keyup', codeDidChange);
+  /*var highlight;
+  highlight = document.createElement('div');
+  highlight.appendChild(codeEl);
+  highlight.className = 'highlight';
+  codeEl.parentNode.insertBefore(previewEl, highlight);*/
   codeEl.parentNode.insertBefore(previewEl, codeEl);
 };
 
@@ -142,6 +147,7 @@ var autoResizeTextArea = function(el) {
   var mirrorEl = document.createElement('div');
   mirrorEl.className = 'preview-code';
   mirrorEl.style.position = 'absolute';
+  mirrorEl.style.top = 0;
   mirrorEl.style.left = '-9999px';
   bodyEl.appendChild(mirrorEl);
   var maxHeight = parseInt(
@@ -155,7 +161,7 @@ var autoResizeTextArea = function(el) {
     } else {
       this.style.overflow = 'hidden';
     }
-    this.style.height = (mirrorEl.offsetHeight + 2) + 'px';
+    this.style.height = (mirrorEl.offsetHeight + 2 + 16) + 'px';
   };
   el.addEventListener('keypress', codeDidChange);
   el.addEventListener('keyup', codeDidChange);
