@@ -186,9 +186,9 @@ var resizeableButtons = function() {
   var previewWidth = keyvalParse(document.cookie)['preview-width'];
   if (previewWidth) {
     resizePreviews(previewWidth);
-    removeClass(settingsEl.getElementsByClassName('is-active'), 'is-active');
+    removeClass(settingsEl.getElementsByClassName('active'), 'active');
     var btn = settingsEl.querySelector('button[data-width="' + previewWidth + '"]');
-    if (btn) { btn.classList.add('is-active'); }
+    if (btn) { btn.classList.add('active'); }
   }
 
   window.addEventListener('message', function (ev) {
@@ -207,12 +207,12 @@ var resizeableButtons = function() {
     settingsEl.addEventListener('click', function(event) {
       var tagName = event.target.tagName.toLowerCase();
       var btn;
-      if (tagName === 'button') btn = event.target;
+      if (tagName === 'a') btn = event.target;
       else if (tagName === 'svg') btn = event.target.parentNode;
       else return;
       event.preventDefault();
-      removeClass(settingsEl.getElementsByClassName('is-active'), 'is-active');
-      btn.classList.add('is-active');
+      removeClass(settingsEl.getElementsByClassName('active'), 'active');
+      btn.classList.add('active');
       var width = btn.dataset.width;
       resizePreviews(width);
     });

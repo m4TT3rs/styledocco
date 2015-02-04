@@ -11,8 +11,9 @@ html
         #{project.name}
       else if title
         #{title}
-    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
-    link(rel='stylesheet', href='http://getbootstrap.com/assets/css/docs.min.css')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    style(type="text/preview")
+        @import "http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css";
     if (resources.docs && resources.docs.css)
       style !{resources.docs.css}
     if (resources.previews && resources.previews.js)
@@ -34,7 +35,7 @@ html
             - var dropdownid = 0
             each links, folder in project.menu
               if folder != './' || links.length > 10
-                - if (folder === './') folder = 'files'
+                - if (folder === './') folder = 'Components'
                 - dropdownid++
                 li.dropdown
                   a.dropdown-toggle(href="#", data-toggle="dropdown") #{folder}&nbsp;
@@ -65,9 +66,31 @@ html
     footer.bs-docs-footer(role="contentinfo")
       .container
         p &copy; #{project.name}
-    if (resources.docs && resources.docs.js)
-      script !{resources.docs.js}
+        
+    .navbar.navbar-default.navbar-fixed-bottom
+      .settings.container(hidden)
+        ul.nav.navbar-nav
+          // Icons from http://iconmonstr.com
+          li
+            a(href="javascrip:void(0);",title="Desktop (1280)",data-width=1280)
+              svg.icon(viewBox="0 0 412 386",height=24,width=26)
+                path(d="m147.6,343.9c-4.5,15.9-26.2,37.6-42.1,42.1h201c-15.3,-4-38.1,-26.8-42.1,-42.1H147.6zM387,0.5H25c-13.8,0-25,11.2-25,25V294c0,13.8 11.2,25 25,25h362c13.8,0 25,-11.2 25,-25V25.5C412,11.7 400.8,0.5 387,0.5zM369.9,238.2H42.1L42.1,42.6 369.9,42.6V238.2z")
+          li
+            a(href="javascrip:void(0);",title="Laptop (1024)",data-width=1024)
+              svg.icon(viewBox="0 0 384 312",height=23,width=28)
+                path(d="m349.2,20.5c0,-11-9,-20-20,-20H53.6c-11,0-20,9-20,20v194H349.2v-194zm-27,167H60.6V27.5H322.2v160zm28,42H32.6L2.6,282.1c-3.5,6.2-3.5,13.8 0.1,19.9 3.6,6.2 10.2,9.9 17.3,9.9H363.1c7.1,0 13.7,-3.8 17.3,-10 3.6,-6.2 3.6,-13.8 0,-20l-30.2,-52.5zm-196.9,54 8,-23.5h60.5l8,23.5h-76.5z")
+          li
+            a(href="javascrip:void(0);",title="Tablet (768)",data-width=768)
+              svg.icon(viewBox="0 0 317 412",height=24,width=18)
+                path(d="M 316.5,380 V 32 c 0,-17.7 -14.3,-32 -32,-32 H 32 C 14.3,0 0,14.3 0,32 v 348 c 0,17.7 14.3,32 32,32 h 252.5 c 17.7,0 32,-14.3 32,-32 z M 40,367 V 45 H 276.5 V 367 H 40 z m 109.8,22.7 c 0,-4.7 3.8,-8.5 8.5,-8.5 4.7,0 8.5,3.8 8.5,8.5 0,4.7 -3.8,8.5 -8.5,8.5 -4.7,0 -8.5,-3.8 -8.5,-8.5 z")
+          li
+            a(href="javascrip:void(0);",title="Smart phone (320)",data-width=320)
+              svg.icon(viewBox="0 0 224 412",height=24,width=13)
+                path(d="M 190.7,0 H 33 C 14.8,0 0,14.8 0,33 v 346 c 0,18.2 14.8,33 33,33 h 157.7 c 18.2,0 33,-14.8 33,-33 V 33 c 0,-18.2 -14.8,-33 -33,-33 z M 94.3,30.2 h 37 c 2.2,0 4,1.8 4,4 0,2.2 -1.8,4 -4,4 h -37 c -2.2,0 -4,-1.8 -4,-4 0,-2.2 1.8,-4 4,-4 z m 18.5,362.8 c -8.8,0 -16,-7.2 -16,-16 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 0,8.8 -7.2,16 -16,16 z M 198.6,343.8 H 25.1 V 68.2 h 173.5 v 275.5 z")
+          li
+            a.auto.active(href="javascrip:void(0);",title="Auto (100%)",data-width="auto") Auto
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     script(src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
-    script(src='http://getbootstrap.com/assets/js/docs.min.js')
+    if (resources.docs && resources.docs.js)
+      script !{resources.docs.js}
 <!-- Generated with StyleDocco (http://jacobrask.github.com/styledocco). -->
